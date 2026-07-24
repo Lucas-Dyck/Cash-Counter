@@ -63,7 +63,10 @@
     </head>
     <body>
         <div id="buttons">
-            <button style="background-color: rgb(143, 143, 143);">$0.25</button>
+            <button style="background-color: rgb(143, 143, 143);">¢1</button>
+            <button style="background-color: rgb(143, 143, 143);">¢5</button>
+            <button style="background-color: rgb(143, 143, 143);">¢10</button>
+            <button style="background-color: rgb(143, 143, 143);">¢25</button>
             <button style="background-color: rgb(198, 155, 71);">$1</button>
             <button style="background-color: rgb(216, 201, 147);">$2</button>
             <button style="background-color: rgb(81, 162, 229);">$5</button>
@@ -94,7 +97,11 @@
                 $("p").text("Total: $" + total.toLocaleString('en-US'));
             })
             function handleClick(){
-                var amount = Number($(this).text().replace("$", ""));
+                var clickedButtonText = $(this).text();
+                if (clickedButtonText === "¢25" || clickedButtonText === "¢10" || clickedButtonText === "¢5" || clickedButtonText === "¢1") {
+                    Number(clickedButtonText) /= 100;
+                }
+                var amount = Number(clickedButtonText.slice(1));
                 historyArray.push(amount);
                 total += amount;
                 $("p").text("Total: $" + total.toLocaleString('en-US'));
