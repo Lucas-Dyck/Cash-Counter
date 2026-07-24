@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cash Counter</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+            }
+            #buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            button {
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+                border: none;
+                color: rgb(0, 0, 0);
+                font-size: 3rem;
+                font-family: "Times New Roman";
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 25px;
+            }
+            button:active{
+                opacity: 50%;
+            }
+            p {
+                color: white;
+                text-align: center;
+                font-size: 3rem;
+            }
+            .move {
+                display: flex;
+                width:200px;
+                height: 120px;
+                border-radius: 20px;
+                font-size: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 25px;
+            }
+            .undo {
+                background-color: brown;
+            }
+            .start-over {
+                background-color: teal;
+            }
+            .move:active{
+                opacity: 50%;
+            }
+            #controls {
+                display: flex;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="buttons">
+            <button style="background-color: rgb(143, 143, 143);">$0.25</button>
+            <button style="background-color: rgb(198, 155, 71);">$1</button>
+            <button style="background-color: rgb(216, 201, 147);">$2</button>
+            <button style="background-color: rgb(81, 162, 229);">$5</button>
+            <button style="background-color: rgb(154, 66, 255);">$10</button>
+            <button style="background-color: rgb(143, 237, 99);">$20</button>
+            <button style="background-color: rgb(255, 137, 158);">$50</button>
+            <button style="background-color: rgb(190, 129, 68);">$100</button>
+        </div>
+        <div id="controls">
+            <div class="move undo">Undo</div>
+            <div class="move start-over">Start Over</div>
+        </div>
+        <p>Total: $0</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            var historyArray = [];
+            let total = 0;
+            $("button").on("click", handleClick);
+            $(".move.undo").on("click", function(){
+                if (total > 0) {
+                    total-=historyArray.at(-1);
+                }
+                $("p").text("Total: $" + total);
+            })
+            $(".move.start-over").on("click", function(){
+                total = 0;
+                historyArray = [];
+                $("p").text("Total: $" + total);
+            })
+            function handleClick(){
+                var amount = Number($(this).text().replace("$", ""));
+                historyArray.push(amount);
+                total += amount;
+                $("p").text("Total: $" + total);
+            }
+        </script>
+    </body>
+</html>
