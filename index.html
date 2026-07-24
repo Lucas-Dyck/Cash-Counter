@@ -86,9 +86,11 @@
             let total = 0;
             $("button").on("click", handleClick);
             $(".move.undo").on("click", function(){
-                if (total > 0 || historyArray.length() > 1) {
-                    total -= historyArray.at(-1);
-                }
+            total -= historyArray.at(-1);
+            if (total < 0) {
+                total = 0;
+                historyArray = [];
+            }
                 $("p").text("Total: $" + total.toLocaleString('en-US'));
             })
             $(".move.start-over").on("click", function(){
