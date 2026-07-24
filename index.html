@@ -97,11 +97,11 @@
                 $("p").text("Total: $" + total.toLocaleString('en-US'));
             })
             function handleClick(){
-                var clickedButtonText = $(this).text();
-                if (clickedButtonText === "¢25" || clickedButtonText === "¢10" || clickedButtonText === "¢5" || clickedButtonText === "¢1") {
-                    clickedButtonText = Number(clickedButtonText) / 100;
+                var cash = $(this).text();
+                if (cash === "¢25" || cash === "¢10" || cash === "¢5" || cash === "¢1") {
+                    cash = Number(cash).slice(1) / 100;
                 }
-                var amount = Number(String(clickedButtonText).slice(1));
+                var amount = Number(String(cash).slice(1));
                 historyArray.push(amount);
                 total += amount;
                 $("p").text("Total: $" + total.toLocaleString('en-US'));
