@@ -99,7 +99,7 @@
             function handleClick(){
                 var cash = $(this).text();
                 if (cash === "¢25" || cash === "¢10" || cash === "¢5" || cash === "¢1") {
-                    cash = Number(cash).slice(1) / 100;
+                    cash = Number(cash.slice(1)) / 100;
                 }
                 var amount = Number(String(cash).slice(1));
                 historyArray.push(amount);
